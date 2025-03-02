@@ -25,6 +25,20 @@ CV_EN_CONFIG = types.DatasetConfig(
     assistant_template="{{text_proc.format_asr_text(sentence)}}",
 )
 
+# Bengali
+CV_BN_CONFIG = types.DatasetConfig(
+    name="commonvoice-bn",
+    base="commonvoice",
+    subset="bn",
+    splits=[
+        types.DatasetSplitConfig(name="train", num_samples=10_000),
+        types.DatasetSplitConfig(name="validation", num_samples=2_000),
+        types.DatasetSplitConfig(name="test", num_samples=2_000),
+    ],
+    transcript_template="{{text_proc.format_asr_text(sentence)}}",
+    assistant_template="{{text_proc.format_asr_text(sentence)}}",
+)
+
 # Arabic
 CV_AR_CONFIG = types.DatasetConfig(
     name="commonvoice-ar",
@@ -191,6 +205,12 @@ CV_EN_TRANS_CONFIG = types.DatasetConfig(
     user_template=types.TRANSCRIPTION_USER_TEMPLATE,
     eval_config=types.EvalConfig(metric="wer", args={"lang_id": "en"}),
 )
+CV_BN_TRANS_CONFIG = types.DatasetConfig(
+    name="commonvoice-bn-transcription",
+    base="commonvoice-bn",
+    user_template=types.TRANSCRIPTION_USER_TEMPLATE,
+    eval_config=types.EvalConfig(metric="wer", args={"lang_id": "bn"}),
+)
 CV_AR_TRANS_CONFIG = types.DatasetConfig(
     name="commonvoice-ar-transcription",
     base="commonvoice-ar",
@@ -267,6 +287,12 @@ CV_UK_TRANS_CONFIG = types.DatasetConfig(
 CV_EN_CONT_CONFIG = types.DatasetConfig(
     name="commonvoice-en-continuation",
     base="commonvoice-en",
+    user_template=types.CONTINUATION_USER_TEMPLATE,
+    assistant_template=types.CONTINUATION_ASSISTANT_TEMPLATE,
+)
+CV_BN_CONT_CONFIG = types.DatasetConfig(
+    name="commonvoice-bn-continuation",
+    base="commonvoice-bn",
     user_template=types.CONTINUATION_USER_TEMPLATE,
     assistant_template=types.CONTINUATION_ASSISTANT_TEMPLATE,
 )
@@ -350,6 +376,7 @@ CV_UK_CONT_CONFIG = types.DatasetConfig(
 configs = [
     CV_BASE_CONFIG,
     CV_EN_CONFIG,
+    CV_BN_CONFIG,
     CV_AR_CONFIG,
     CV_DE_CONFIG,
     CV_ES_CONFIG,
@@ -363,6 +390,7 @@ configs = [
     CV_SV_CONFIG,
     CV_UK_CONFIG,
     CV_EN_TRANS_CONFIG,
+    CV_BN_TRANS_CONFIG,
     CV_AR_TRANS_CONFIG,
     CV_DE_TRANS_CONFIG,
     CV_ES_TRANS_CONFIG,
@@ -376,6 +404,7 @@ configs = [
     CV_SV_TRANS_CONFIG,
     CV_UK_TRANS_CONFIG,
     CV_EN_CONT_CONFIG,
+    CV_BN_CONT_CONFIG,
     CV_AR_CONT_CONFIG,
     CV_DE_CONT_CONFIG,
     CV_ES_CONT_CONFIG,

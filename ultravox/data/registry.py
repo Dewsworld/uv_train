@@ -15,6 +15,7 @@ from ultravox.data.configs import multilingual_librispeech
 from ultravox.data.configs import peoplespeech
 from ultravox.data.configs import voxpopuli
 from ultravox.data.configs import wenetspeech
+from ultravox.data.configs import lalbok
 
 DATASET_MAP: Dict[str, types.DatasetConfig] = {}
 
@@ -80,3 +81,4 @@ register_datasets(multilingual_librispeech.configs)
 register_datasets(peoplespeech.configs)
 register_datasets(voxpopuli.configs)
 register_datasets(wenetspeech.configs)
+register_datasets(lalbok.configs)

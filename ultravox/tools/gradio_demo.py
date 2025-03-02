@@ -22,13 +22,13 @@ class DemoConfig:
     #    fixie-ai/ultravox
     #    runs/llama2_asr_gigaspeech/checkpoint-1000/
     #    wandb://fixie/ultravox/model-llama2_asr_gigaspeech:v0
-    model_path: str = "fixie-ai/ultravox-v0_3"
+    model_path: str = "fixie-ai/ultravox-v0_5-llama-3_2-1b"
     device: Optional[str] = None
     data_type: Optional[str] = None
     default_prompt: str = ""
     max_new_tokens: int = 200
     temperature: float = 0
-    voice_mode: bool = False
+    voice_mode: bool = True
 
 
 args = simple_parsing.parse(config_class=DemoConfig)
@@ -110,7 +110,7 @@ with gr.Blocks() as demo:
             reset = gr.Button("Reset")
             audio = gr.Audio(
                 label="🎤",
-                sources=["microphone"],
+                sources=["upload"],
                 type="filepath",
                 visible=True,
             )
@@ -151,6 +151,16 @@ with gr.Blocks() as demo:
         [chatbot, prompt, audio, max_new_tokens, temperature],
         [chatbot],
     )
+
+    audio.upload(
+        add_audio, [chatbot, audio, prompt], [chatbot], queue=False
+    ).then(
+        process_audio,
+        [chatbot, prompt, audio, max_new_tokens, temperature],
+        [chatbot],
+    )
+
+
     reset.click(gradio_reset, [], [chatbot, prompt, audio], queue=False)
     demo.load(gradio_reset, [], [chatbot, prompt, audio], queue=False)
 
