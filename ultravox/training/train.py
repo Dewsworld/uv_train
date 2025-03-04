@@ -88,6 +88,9 @@ def main() -> None:
 
     config = config_base.get_train_config()
 
+    print (config)
+    exit(1)
+
     patch_trainer_save_fsdp_model()
     transformers.set_seed(config.seed)
 

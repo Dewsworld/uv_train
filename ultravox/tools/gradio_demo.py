@@ -22,7 +22,8 @@ class DemoConfig:
     #    fixie-ai/ultravox
     #    runs/llama2_asr_gigaspeech/checkpoint-1000/
     #    wandb://fixie/ultravox/model-llama2_asr_gigaspeech:v0
-    model_path: str = "fixie-ai/ultravox-v0_5-llama-3_2-1b"
+    model_path: str = "dewsworld/uv_1"
+    # model_path: str = "/Users/shamir/apps/ml_practise/chatbot/bengali_dataset_collection/corpus_generator/exp--2025-03-03--17-26-15/checkpoint-14400/"
     device: Optional[str] = None
     data_type: Optional[str] = None
     default_prompt: str = ""

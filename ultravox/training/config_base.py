@@ -223,7 +223,7 @@ def fix_hyphens(arg: str):
 
 
 def get_train_config(
-    override_sys_args: Optional[List[str]] = None, config_file="meta_config.yaml"
+    override_sys_args: Optional[List[str]] = None, config_file="base_config.yaml"
 ) -> TrainConfig:
     """
     Parse the command line arguments and return a TrainConfig object.
